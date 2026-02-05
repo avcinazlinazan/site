@@ -1087,13 +1087,12 @@
             contactResult.textContent = 'Gönderiliyor...';
 
             const formData = new FormData(contactForm);
-            const payload = Object.fromEntries(formData.entries());
 
             try {
-                const res = await fetch('/api/form', {
+                const res = await fetch('https://formspree.io/f/meeljrbo', {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    headers: { 'Accept': 'application/json' },
+                    body: formData
                 });
 
                 if (res.ok) {
@@ -1101,8 +1100,8 @@
                     contactResult.textContent = 'Mesajınız gönderildi. Teşekkürler.';
                     contactForm.reset();
                 } else {
-                    const text = await res.text();
-                    throw new Error(text || 'Sunucu hatası');
+                    const data = await res.json().catch(() => ({}));
+                    throw new Error(data.error || 'Sunucu hatası');
                 }
             } catch (err) {
                 console.error(err);

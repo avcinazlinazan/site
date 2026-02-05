@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     try {
       const payload = {
         personalizations: [{
-          to: [{ email: process.env.CONTACT_TO_EMAIL || 'you@example.com' }],
+          to: [{ email: process.env.CONTACT_TO_EMAIL || 'avcinazlinazan@yagmuranaai.com' }],
           subject: 'Yeni iletişim formu'
         }],
         from: { email: process.env.FROM_EMAIL || 'noreply@example.com' },
