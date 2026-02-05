@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGK Danışmanlık - Sosyal Güvenlik Kurumu Hizmetleri</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #f97316 0%, #fb923c 50%, #fbbf24 100%);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .service-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(249, 115, 22, 0.2);
+            border-left-color: #f97316;
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: linear-gradient(90deg, #f97316 0%, #fbbf24 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .slide {
+            display: none;
+        }
+        
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .counter {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-icon:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.1);
+            border-top: 4px solid #f97316;
+        }
+        
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+        }
+        
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(249, 115, 22, 0.4);
+        }
+        
+        .scroll-top.show {
+            display: flex;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+        }
+        
+        .process-step {
+            position: relative;
+            padding-left: 80px;
+        }
+        
+        .process-step::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 70px;
+            width: 2px;
+            height: calc(100% - 70px);
+            background: linear-gradient(180deg, #f97316 0%, #fbbf24 100%);
+        }
+        
+        .process-step:last-child::before {
+            display: none;
+        }
+        
+        .process-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f97316 0%, #fbbf24 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header/Navigation -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between py-4">
+                <div class="flex items-center">
+                    <div class="text-3xl font-bold text-gradient">
+                        <i class="fas fa-shield-halved mr-2"></i>SGK Danışmanlık
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-orange-600 font-medium">Ana Sayfa</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-orange-600 font-medium">Hakkımızda</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-orange-600 font-medium">Hizmetlerimiz</a>
+                    <a href="#process" class="nav-link text-gray-700 hover:text-orange-600 font-medium">Süreç</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-orange-600 font-medium">İletişim</a>
+                </nav>
+                
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="tel:+908503041190" class="text-orange-600 font-semibold">
+                        <i class="fas fa-phone-alt mr-2"></i>0850 304 11 90
+                    </a>
+                    <button class="btn-primary text-white px-6 py-2 rounded-full font-semibold">
+                        Randevu Al
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-2xl text-orange-600">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <nav class="flex flex-col space-y-3">
+                    <a href="#home" class="text-gray-700 hover:text-orange-600 font-medium">Ana Sayfa</a>
+                    <a href="#about" class="text-gray-700 hover:text-orange-600 font-medium">Hakkımızda</a>
+                    <a href="#services" class="text-gray-700 hover:text-orange-600 font-medium">Hizmetlerimiz</a>
+                    <a href="#process" class="text-gray-700 hover:text-orange-600 font-medium">Süreç</a>
+                    <a href="#contact" class="text-gray-700 hover:text-orange-600 font-medium">İletişim</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Slider -->
+    <section id="home" class="hero-gradient text-white py-20 relative overflow-hidden">
+        <div class="slider-container">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <div class="container mx-auto px-4">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="z-10">
+                            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                                SGK İşlemlerinizde <br>Uzman Desteği
+                            </h1>
+                            <p class="text-xl mb-8 text-white/90">
+                                Sosyal Güvenlik Kurumu ile ilgili tüm işlemlerinizde profesyonel danışmanlık ve çözüm hizmeti sunuyoruz
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <button class="bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                                    Hizmetlerimiz
+                                </button>
+                                <button class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-orange-600 transition">
+                                    İletişime Geç
+                                </button>
+                            </div>
+                        </div>
+                        <div class="hidden md:block">
+                            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&h=400&fit=crop" alt="SGK Danışmanlık" class="rounded-lg shadow-2xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="slide">
+                <div class="container mx-auto px-4">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="z-10">
+                            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                                Emeklilik Haklarınızı <br>Birlikte Planlayalım
+                            </h1>
+                            <p class="text-xl mb-8 text-white/90">
+                                Emeklilik sürecinizi en verimli şekilde yönetin, haklarınızdan tam anlamıyla yararlanın
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <button class="bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                                    Emeklilik Hesaplama
+                                </button>
+                                <button class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-orange-600 transition">
+                                    Ücretsiz Danışma
+                                </button>
+                            </div>
+                        </div>
+                        <div class="hidden md:block">
+                            <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&h=400&fit=crop" alt="Emeklilik Planlaması" class="rounded-lg shadow-2xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="slide">
+                <div class="container mx-auto px-4">
+                    <div class="grid md:grid-cols-2 gap-12 items-center">
+                        <div class="z-10">
+                            <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                                İşveren SGK <br>İşlemlerinde Yanınızdayız
+                            </h1>
+                            <p class="text-xl mb-8 text-white/90">
+                                Bordro hazırlama, bildirim süreçleri ve SGK mevzuatı konusunda tam destek alın
+                            </p>
+                            <div class="flex flex-wrap gap-4">
+                                <button class="bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition">
+                                    İşveren Hizmetleri
+                                </button>
+                                <button class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-orange-600 transition">
+                                    Teklif Al
+                                </button>
+                            </div>
+                        </div>
+                        <div class="hidden md:block">
+                            <img src="https://images.unsplash.com/photo-1664575602276-acd073f104c1?w=600&h=400&fit=crop" alt="İşveren Hizmetleri" class="rounded-lg shadow-2xl">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Slider Controls -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex space-x-3">
+            <button class="slider-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition" data-slide="0"></button>
+            <button class="slider-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition" data-slide="1"></button>
+            <button class="slider-dot w-3 h-3 rounded-full bg-white opacity-50 hover:opacity-100 transition" data-slide="2"></button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-tie text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Uzman Kadro</h3>
+                    <p class="text-gray-600">SGK mevzuatında uzman danışmanlarımız</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Hızlı İşlem</h3>
+                    <p class="text-gray-600">Aynı gün içinde çözüm ve sonuç</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-contract text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 mb-2">Güvenli Süreç</h3>
+                    <p class="text-gray-600">Tüm işlemlerinizde tam güvenlik</p>
+                </div>
+                <div class="text-center">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mt-4 mb-2">7/24 Destek</h3>
+                    <p class="text-gray-600">Her an ulaşabileceğiniz destek hattı</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=600&h=400&fit=crop" alt="Hakkımızda" class="rounded-lg shadow-xl">
+                </div>
+                <div>
+                    <span class="text-orange-600 font-semibold text-sm uppercase tracking-wide">Hakkımızda</span>
+                    <h2 class="text-4xl font-bold mt-4 mb-6">Sosyal Güvenlik Konusunda 12 Yıllık Tecrübe</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        2012 yılından bu yana SGK danışmanlığı alanında faaliyet göstermekteyiz. Bireysel ve kurumsal 
+                        müşterilerimize SGK mevzuatı, emeklilik işlemleri, sigortalılık ve işveren yükümlülükleri 
+                        konularında profesyonel destek sağlıyoruz.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        Deneyimli kadromuz ve güncel mevzuat takibimiz sayesinde müşterilerimize en doğru ve 
+                        hızlı çözümleri sunuyoruz. Amacımız, SGK işlemlerinizi kolaylaştırmak ve haklarınızdan 
+                        eksiksiz yararlanmanızı sağlamaktır.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-check-circle text-orange-600 text-xl mr-3"></i>
+                                <span class="font-semibold">Güncel Mevzuat Takibi</span>
+                            </div>
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-check-circle text-orange-600 text-xl mr-3"></i>
+                                <span class="font-semibold">Hızlı Çözüm</span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-check-circle text-orange-600 text-xl mr-3"></i>
+                                <span class="font-semibold">Uygun Fiyat</span>
+                            </div>
+                            <div class="flex items-center mb-3">
+                                <i class="fas fa-check-circle text-orange-600 text-xl mr-3"></i>
+                                <span class="font-semibold">Güvenilir Hizmet</span>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-primary text-white px-8 py-3 rounded-full font-semibold">
+                        Daha Fazla Bilgi
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Counter -->
+    <section class="py-16 hero-gradient text-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="counter text-white" data-target="2500">0</div>
+                    <p class="text-xl mt-2">Memnun Müşteri</p>
+                </div>
+                <div>
+                    <div class="counter text-white" data-target="8500">0</div>
+                    <p class="text-xl mt-2">Tamamlanan İşlem</p>
+                </div>
+                <div>
+                    <div class="counter text-white" data-target="12">0</div>
+                    <p class="text-xl mt-2">Yıllık Deneyim</p>
+                </div>
+                <div>
+                    <div class="counter text-white" data-target="98">0</div>
+                    <p class="text-xl mt-2">% Müşteri Memnuniyeti</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-orange-600 font-semibold text-sm uppercase tracking-wide">Hizmetlerimiz</span>
+                <h2 class="text-4xl font-bold mt-4 mb-6">SGK Konusunda Sunduğumuz Hizmetler</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    Bireysel ve kurumsal müşterilerimize yönelik kapsamlı SGK danışmanlık ve işlem hizmetleri
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="service-card bg-gray-50 rounded-lg p-8 border border-gray-200">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-user-clock text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Emeklilik İşlemleri</h3>
+                    <p class="text-gray-600 mb-6">
+                        Emeklilik başvurusu, borçlanma hesaplamaları, yaşlılık aylığı, erken emeklilik danışmanlığı ve tüm emeklilik süreç yönetimi
+                    </p>
+                    <a href="#" class="text-orange-600 font-semibold hover:text-orange-700">
+                        Detaylı Bilgi <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card bg-gray-50 rounded-lg p-8 border border-gray-200">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-building text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">İşveren Hizmetleri</h3>
+                    <p class="text-gray-600 mb-6">
+                        Bordro hazırlama, personel giriş-çıkış bildirimleri, prim ödemeleri, SGK teşvikleri ve işveren yükümlülükleri yönetimi
+                    </p>
+                    <a href="#" class="text-orange-600 font-semibold hover:text-orange-700">
+                        Detaylı Bilgi <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card bg-gray-50 rounded-lg p-8 border border-gray-200">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-calculator text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Borçlanma İşlemleri</h3>
+                    <p class="text-gray-600 mb-6">
+                        Askerlik borçlanması, öğrencilik borçlanması, yurtdışı hizmet borçlanması ve eksik gün borçlanma hesaplamaları
+                    </p>
+                    <a href="#" class="text-orange-600 font-semibold hover:text-orange-700">
+                        Detaylı Bilgi <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card bg-gray-50 rounded-lg p-8 border border-gray-200">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-heart text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Sağlık Hizmetleri</h3>
+                    <p class="text-gray-600 mb-6">
+                        GSS prim ödemeleri, Yeşil Kart işlemleri, sağlık raporu takibi, ilaç ve tedavi geri ödemeleri konusunda danışmanlık
+                    </p>
+                    <a href="#" class="text-orange-600 font-semibold hover:text-orange-700">
+                        Detaylı Bilgi <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card bg-gray-50 rounded-lg p-8 border border-gray-200">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-briefcase-medical text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">İş Kazası & Meslek Hastalığı</h3>
+                    <p class="text-gray-600 mb-6">
+                        İş kazası bildirimleri, meslek hastalığı tespiti, geçici iş göremezlik süreçleri ve maluliyet işlemleri yönetimi
+                    </p>
+                    <a href="#" class="text-orange-600 font-semibold hover:text-orange-700">
+                        Detaylı Bilgi <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+                
+                <div class="service-card bg-gray-50 rounded-lg p-8 border border-gray-200">
+                    <div class="w-16 h-16 bg-orange-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-gavel text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Hukuki Danışmanlık</h3>
+                    <p class="text-gray-600 mb-6">
+                        SGK davaları, tazminat talepleri, prim iadesi işlemleri ve SGK mevzuatı konusunda hukuki destek
+                    </p>
+                    <a href="#" class="text-orange-600 font-semibold hover:text-orange-700">
+                        Detaylı Bilgi <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-orange-600 font-semibold text-sm uppercase tracking-wide">Çalışma Sürecimiz</span>
+                <h2 class="text-4xl font-bold mt-4 mb-6">Nasıl Çalışıyoruz?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    4 basit adımda SGK işlemlerinizi tamamlayın
+                </p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="process-step mb-12">
+                    <div class="process-number">1</div>
+                    <div class="bg-white rounded-lg p-6 shadow-md">
+                        <h3 class="text-2xl font-bold mb-3">İletişim & Bilgi Toplama</h3>
+                        <p class="text-gray-600">
+                            İlk görüşmemizde ihtiyacınızı dinliyor, gerekli belgeleri ve bilgileri belirliyoruz. 
+                            Ücretsiz ön değerlendirme yaparak size en uygun çözümü sunuyoruz.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="process-step mb-12">
+                    <div class="process-number">2</div>
+                    <div class="bg-white rounded-lg p-6 shadow-md">
+                        <h3 class="text-2xl font-bold mb-3">Dosya İnceleme & Analiz</h3>
+                        <p class="text-gray-600">
+                            Uzman ekibimiz tüm belgelerinizi inceler, SGK kayıtlarınızı kontrol eder ve 
+                            detaylı bir analiz raporu hazırlar. Size en avantajlı seçenekleri sunarız.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="process-step mb-12">
+                    <div class="process-number">3</div>
+                    <div class="bg-white rounded-lg p-6 shadow-md">
+                        <h3 class="text-2xl font-bold mb-3">İşlem & Takip</h3>
+                        <p class="text-gray-600">
+                            Tüm başvuru ve işlemlerinizi sizin adınıza gerçekleştiriyoruz. Sürecin her 
+                            aşamasında sizi bilgilendiriyor ve işlemlerinizi titizlikle takip ediyoruz.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="process-step">
+                    <div class="process-number">4</div>
+                    <div class="bg-white rounded-lg p-6 shadow-md">
+                        <h3 class="text-2xl font-bold mb-3">Sonuçlandırma & Destek</h3>
+                        <p class="text-gray-600">
+                            İşleminiz tamamlandığında size detaylı bilgi veriyor ve sonrası için de 
+                            destek olmaya devam ediyoruz. Sorularınız için her zaman yanınızdayız.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-orange-600 font-semibold text-sm uppercase tracking-wide">Neden Biz?</span>
+                <h2 class="text-4xl font-bold mt-4 mb-6">Neden SGK Danışmanlık'ı Tercih Etmelisiniz?</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-medal text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Sertifikalı Uzmanlar</h3>
+                    <p class="text-gray-600">
+                        Tüm danışmanlarımız SGK mevzuatı konusunda sertifikalı ve sürekli eğitim almaktadır
+                    </p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-handshake text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Şeffaf Süreç</h3>
+                    <p class="text-gray-600">
+                        Tüm işlemlerimizde tam şeffaflık, gizli masraf yok, her aşamada bilgilendirme
+                    </p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-shield-alt text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Güvenceli Hizmet</h3>
+                    <p class="text-gray-600">
+                        Verdiğimiz hizmetin arkasındayız, yasal güvence ve sorumluluk sigortası ile çalışıyoruz
+                    </p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-chart-line text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Maksimum Fayda</h3>
+                    <p class="text-gray-600">
+                        Haklarınızdan en üst düzeyde yararlanmanız için tüm alternatifleri değerlendiriyoruz
+                    </p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-sync-alt text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Güncel Takip</h3>
+                    <p class="text-gray-600">
+                        SGK mevzuatındaki tüm değişiklikleri takip ediyor ve müşterilerimizi bilgilendiriyoruz
+                    </p>
+                </div>
+                
+                <div class="text-center p-6">
+                    <div class="w-20 h-20 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-smile text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Müşteri Memnuniyeti</h3>
+                    <p class="text-gray-600">
+                        %98 müşteri memnuniyet oranı ile sektörde öncü konumdayız
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-orange-600 font-semibold text-sm uppercase tracking-wide">Müşteri Yorumları</span>
+                <h2 class="text-4xl font-bold mt-4 mb-6">Müşterilerimiz Ne Diyor?</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Emeklilik işlemlerimde çok yardımcı oldular. Borçlanma hesaplamalarımı en avantajlı şekilde yaptılar. Herkese tavsiye ederim."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            MK
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Mehmet Kaya</h4>
+                            <p class="text-sm text-gray-500">Emekli Öğretmen</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "Firmamızın tüm SGK işlemlerini yönetiyorlar. Bordro ve bildirim süreçlerinde hiç sorun yaşamadık. Profesyonel bir ekip."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            AY
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Ayşe Yılmaz</h4>
+                            <p class="text-sm text-gray-500">Şirket Sahibi</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="flex items-center mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6 italic">
+                        "İş kazası sonrası tüm süreçte yanımda oldular. Haklarımı eksiksiz aldım. İlgileri ve bilgileri için teşekkürler."
+                    </p>
+                    <div class="flex items-center">
+                        <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center text-white font-bold mr-4">
+                            CA
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Can Aydın</h4>
+                            <p class="text-sm text-gray-500">İnşaat İşçisi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-orange-600 font-semibold text-sm uppercase tracking-wide">İletişim</span>
+                <h2 class="text-4xl font-bold mt-4 mb-6">Bizimle İletişime Geçin</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">
+                    SGK işlemleriniz için bize ulaşın, ücretsiz ön görüşme yapın
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <div class="bg-gray-50 rounded-lg shadow-lg p-8 mb-8">
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-orange-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-2">Adres</h3>
+                                <p class="text-gray-600">Kızılay Mah. GMK Bulvarı No:45/7</p>
+                                <p class="text-gray-600">Çankaya/ANKARA</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-phone-alt text-orange-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-2">Telefon</h3>
+                                <p class="text-gray-600">0850 304 11 90 (Ücretsiz)</p>
+                                <p class="text-gray-600">0312 425 66 77</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-orange-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg mb-2">E-posta</h3>
+                                <p class="text-gray-600">info@sgkdanismanlik.com</p>
+                                <p class="text-gray-600">destek@sgkdanismanlik.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gray-50 rounded-lg shadow-lg p-8">
+                        <h3 class="font-bold text-xl mb-4">Çalışma Saatlerimiz</h3>
+                        <div class="space-y-2">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Pazartesi - Cuma:</span>
+                                <span class="font-semibold">09:00 - 18:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Cumartesi:</span>
+                                <span class="font-semibold">10:00 - 15:00</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">Pazar:</span>
+                                <span class="font-semibold">Kapalı</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 p-4 bg-orange-50 rounded-lg">
+                            <p class="text-sm text-orange-800">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                <strong>Önemli:</strong> Acil durumlar için 7/24 destek hattımız hizmetinizdedir.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg shadow-lg p-8">
+                    <h3 class="text-2xl font-bold mb-6">Ücretsiz Ön Görüşme Formu</h3>
+                    <form id="contact-form">
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Ad Soyad *</label>
+                            <input name="name" type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600" placeholder="Adınız Soyadınız">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">E-posta *</label>
+                            <input name="email" type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600" placeholder="email@example.com">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Telefon *</label>
+                            <input name="phone" type="tel" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600" placeholder="0555 123 45 67">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Hizmet Türü *</label>
+                            <select name="service" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600">
+                                <option value="">Seçiniz</option>
+                                <option>Emeklilik İşlemleri</option>
+                                <option>İşveren Hizmetleri</option>
+                                <option>Borçlanma İşlemleri</option>
+                                <option>Sağlık Hizmetleri</option>
+                                <option>İş Kazası & Meslek Hastalığı</option>
+                                <option>Hukuki Danışmanlık</option>
+                                <option>Diğer</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-gray-700 font-semibold mb-2">Mesajınız</label>
+                            <textarea name="message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600" placeholder="Lütfen durumunuzu kısaca açıklayın..."></textarea>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="flex items-start">
+                                <input name="kvkk" type="checkbox" required class="mt-1 mr-3">
+                                <span class="text-sm text-gray-600">
+                                    <a href="#" class="text-orange-600 hover:underline">KVKK Aydınlatma Metni</a>'ni okudum, 
+                                    kişisel verilerimin işlenmesini kabul ediyorum.
+                                </span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="w-full btn-primary text-white px-8 py-3 rounded-full font-semibold">
+                            Gönder <i class="fas fa-paper-plane ml-2"></i>
+                        </button>
+                        
+                        <p id="contact-result" class="text-sm text-gray-500 mt-4 text-center hidden"></p>
+                        <p class="text-sm text-gray-500 mt-4 text-center">
+                            * İşaretli alanlar zorunludur. En geç 2 saat içinde dönüş yapacağız.
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 hero-gradient text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-4">SGK İşlemleriniz İçin Hemen Başvurun!</h2>
+            <p class="text-xl mb-8 text-white/90">
+                Uzman ekibimiz sizin için en uygun çözümü üretiyor
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="bg-white text-orange-600 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition text-lg">
+                    <i class="fas fa-phone-alt mr-2"></i>Hemen Ara: 0850 304 11 90
+                </button>
+                <button class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold hover:bg-white hover:text-orange-600 transition text-lg">
+                    <i class="fas fa-calendar-check mr-2"></i>Randevu Al
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4 text-gradient">SGK Danışmanlık</h3>
+                    <p class="text-gray-400 mb-4">
+                        Sosyal Güvenlik Kurumu işlemlerinizde profesyonel danışmanlık hizmeti.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center hover:opacity-80 transition">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center hover:opacity-80 transition">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center hover:opacity-80 transition">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gradient-to-br from-orange-500 to-yellow-400 rounded-full flex items-center justify-center hover:opacity-80 transition">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Hızlı Linkler</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-orange-400 transition">Ana Sayfa</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-orange-400 transition">Hakkımızda</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-orange-400 transition">Hizmetlerimiz</a></li>
+                        <li><a href="#process" class="text-gray-400 hover:text-orange-400 transition">Süreç</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-orange-400 transition">İletişim</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Hizmetlerimiz</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-orange-400 transition">Emeklilik İşlemleri</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-orange-400 transition">İşveren Hizmetleri</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-orange-400 transition">Borçlanma</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-orange-400 transition">Sağlık Hizmetleri</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-orange-400 transition">Hukuki Danışmanlık</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">İletişim Bilgileri</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-orange-400 mt-1 mr-3"></i>
+                            <span>Kızılay Mah. GMK Bulvarı No:45/7 Çankaya/ANKARA</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt text-orange-400 mr-3"></i>
+                            <span>0850 304 11 90</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-orange-400 mr-3"></i>
+                            <span>info@sgkdanismanlik.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center text-gray-400 text-sm">
+                    <p>&copy; 2024 SGK Danışmanlık. Tüm hakları saklıdır.</p>
+                    <div class="flex space-x-4 mt-4 md:mt-0">
+                        <a href="#" class="hover:text-orange-400 transition">Gizlilik Politikası</a>
+                        <a href="#" class="hover:text-orange-400 transition">KVKK</a>
+                        <a href="#" class="hover:text-orange-400 transition">Kullanım Şartları</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scroll-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('opacity-100'));
+            dots.forEach(dot => dot.classList.add('opacity-50'));
+            
+            slides[index].classList.add('active');
+            dots[index].classList.remove('opacity-50');
+            dots[index].classList.add('opacity-100');
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        
+        // Auto slide every 6 seconds
+        setInterval(nextSlide, 6000);
+        
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+            });
+        });
+
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+        
+        const animateCounter = (counter) => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText;
+            const increment = target / speed;
+            
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(() => animateCounter(counter), 1);
+            } else {
+                counter.innerText = target;
+                if (target === 98) {
+                    counter.innerText = target + '%';
+                }
+            }
+        };
+        
+        // Intersection Observer for counters
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    counter.innerText = '0';
+                    animateCounter(counter);
+                    counterObserver.unobserve(counter);
+                }
+            });
+        });
+        
+        counters.forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scroll-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
+            }
+        });
+        
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form Submission (AJAX to Vercel serverless endpoint)
+        const contactForm = document.getElementById('contact-form');
+        const contactResult = document.getElementById('contact-result');
+        
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            contactResult.classList.remove('hidden');
+            contactResult.classList.remove('text-red-500','text-green-600');
+            contactResult.textContent = 'Gönderiliyor...';
+
+            const formData = new FormData(contactForm);
+            const payload = Object.fromEntries(formData.entries());
+
+            try {
+                const res = await fetch('/api/form', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (res.ok) {
+                    contactResult.classList.add('text-green-600');
+                    contactResult.textContent = 'Mesajınız gönderildi. Teşekkürler.';
+                    contactForm.reset();
+                } else {
+                    const text = await res.text();
+                    throw new Error(text || 'Sunucu hatası');
+                }
+            } catch (err) {
+                console.error(err);
+                contactResult.classList.add('text-red-500');
+                contactResult.textContent = 'Gönderirken hata oluştu. Lütfen tekrar deneyin.';
+            }
+
+            setTimeout(() => contactResult.classList.add('hidden'), 5000);
+        });
+
+        // Navbar background on scroll
+        const header = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                header.classList.add('shadow-xl');
+            } else {
+                header.classList.remove('shadow-xl');
+            }
+        });
+    </script>
+
+</body>
+</html>
